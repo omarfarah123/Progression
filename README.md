@@ -1,4 +1,4 @@
-# The Tech Blog
+# Progression
 [![License](https://img.shields.io/badge/License-Academic%20Free%20License%20v3.0-green.svg)](https://opensource.org/licenses/AFL-3.0)
 #### Table of Contents
 - [Progression](#progression)
