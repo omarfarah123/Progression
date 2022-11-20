@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Course, Lecture, User } = require('../models');
+const { Course, Lecture, Document, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -29,12 +29,12 @@ router.get('/courses', withAuth, async (req, res) => {
 router.get('/course/:id', withAuth, async (req, res) => {
   try {
     const courseData = await Course.findByPk(req.params.id, {
-      include: [{model: Lecture}],
+      include: [{model: Document}, {model: Lecture}]
     });
 
     const course = courseData.get({ plain: true });
 
-    res.render('lectures', {
+    res.render('dashboard', {
       ...course,
       logged_in: req.session.logged_in
     });
@@ -59,6 +59,24 @@ router.get('/lecture/:id', withAuth, async (req, res) => {
   }
 });
 
+router.get('/document/:id', withAuth, async (req, res) => {
+  try {
+    const documentData = await Document.findByPk(req.params.id);
+
+    const document = documentData.get({ plain: true });
+
+    res.render('document', {
+      ...document,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/help', withAuth, (req, res) => {
+  res.render('help')
+})
 
 router.get('/login', (req, res) => {
 

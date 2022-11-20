@@ -5,31 +5,52 @@
     <h3>Add a new course:</h3>
 
     <form class="form new-course-form">
-      <div class="form-group">
+      <div class="form-outline mb-4">
         <label for="course-title">Title:</label>
-        <input class="form-input" type="text" id="course-title" name="course-title" />
+        <input class="form-control form-control-lg" type="text" id="course-title" name="course-title" />
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
       </div>
     </form>
-
+    <main>
       {{#if courses.length}}
-  <div class="col-md-6 course-list">
+        <div class="col-md-6 course-list">
     {{#each courses as |course|}}
-    <div>
-      <div>
-        <h4><a href="/course/{{course.id}}">{{course.course_title}}</a></h4>
-      </div>
-      <div>
-        <button type="button" id="delete" data-id="{{course.id}}" class="btn btn-danger">Delete</button>
-        
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
+        <div class="card">
+          <div class="container">
+          <h4><b><a href="/course/{{course.id}}">{{course.course_title}}</b></h4> 
+          <div class="card-body">
+          <button type="button" id="delete" data-id="{{course.id}}" class="btn btn-danger">Delete</button>
+        </div>
 </div>
+      </div>
+    {{/each}}
+      </div>
+      {{/if}}
+    </main>
+</div>
+<style>
+
+.card {
+    inline-size: 160px;
+    border: 10px solid rgb(23, 111, 198);
+    border-radius: 10px;
+    display:flex;
+    width:250px;
+
+    margin: 5px;
+}
+#delete{
+  margin: 2px;
+}
+  
+
+
+
+
+</style>
+
 
 <script src="./js/course.js"></script>
 </div>
