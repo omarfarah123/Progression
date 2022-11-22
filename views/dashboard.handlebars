@@ -107,6 +107,7 @@ const newDocumentFormHandler = async (event) => {
     let course_id = parseInt(url.slice(29))
    
     if (document_title && document_link && course_id) {
+      alert("GOT EM")
       const response = await fetch(`/api/documents`, {
         method: 'POST',
         body: JSON.stringify({document_title, document_link, course_id}),
