@@ -5,11 +5,13 @@
 </div>
 
   <h3>{{course_title}}</h3>
+  <p id="course-id">{{id}}</p>
   <div class="page">
       <div class="forms">
       <h3>Add a new document 📁:</h3>
       <form class="form new-document-form">
       <div class="form-group">
+          
           <label for="document-title">document Title:</label>
           <input class="form-control form-control-lg" type="text" id="document-title" name="document-title" />
           <label for="document-link">document URL:</label>
@@ -97,17 +99,18 @@
 
 <script>
 
+
+document.getElementById("course-id").hidden = true
 const newDocumentFormHandler = async (event) => {
    
     event.preventDefault();
-     alert("JS DETECTED");
+
     const document_title = document.querySelector('#document-title').value.trim();
     const document_link = document.querySelector('#document-link').value.trim().replace('view', 'preview');
-    const url = window.location.href.toString()
-    let course_id = parseInt(url.slice(29))
+    const course_id = document.querySelector('#course-id').innerHTML;
    
     if (document_title && document_link && course_id) {
-      alert(`Got Values ${document_title} ${document_link} ${course_id}`)
+
       const response = await fetch(`/api/documents`, {
         method: 'POST',
         body: JSON.stringify({document_title, document_link, course_id}),
@@ -149,17 +152,16 @@ document
 
 </script>
 <script>
+document.getElementById("course-id").hidden = true
 const newFormHandler = async (event) => {
    
     event.preventDefault();
-    alert("JS DETECTED");
+
     const lecture_title = document.querySelector('#lecture-title').value.trim();
     const lecture_link = document.querySelector('#lecture-link').value.trim().replace('/watch?v=', '/embed/');
-    const url = window.location.href.toString()
-    let course_id = parseInt(url.slice(29))
-    alert(`Values ${lecture_title} ${lecture_link} ${course_id}`)
+    const course_id = document.querySelector('#course-id').innerHTML;
+
     if (lecture_title && lecture_link && course_id) {
-    alert(`Got Values ${lecture_title} ${lecture_link} ${course_id}`)
       const response = await fetch(`/api/lectures`, {
         method: 'POST',
         body: JSON.stringify({lecture_title, lecture_link, course_id}),
