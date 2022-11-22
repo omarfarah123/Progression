@@ -147,3 +147,53 @@ document
     .addEventListener('click', delDocumentButtonHandler);
 
 </script>
+<script>
+const newFormHandler = async (event) => {
+   
+    event.preventDefault();
+  
+    const lecture_title = document.querySelector('#lecture-title').value.trim();
+    const lecture_link = document.querySelector('#lecture-link').value.trim().replace('/watch?v=', '/embed/');
+    const url = window.location.href.toString()
+    let course_id = parseInt(url.slice(29))
+   
+    if (lecture_title && lecture_link && course_id) {
+      const response = await fetch(`/api/lectures`, {
+        method: 'POST',
+        body: JSON.stringify({lecture_title, lecture_link, course_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        document.location.reload();
+      } else {
+        alert('Failed to create lecture');
+      }
+    }
+  };
+  
+  const delButtonHandler = async (event) => {
+    if (event.target.hasAttribute('data-id')) {
+      const lectureId = event.target.getAttribute('data-id');
+      const response = await fetch(`/api/lectures/${lectureId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        window.location.reload()
+      } else {
+        alert('Failed to delete lectures');
+      }
+    }
+  };
+  
+  document
+    .querySelector('.new-lecture-form')
+    .addEventListener('submit', newFormHandler);
+  
+  document
+    .querySelector('.lecture-list')
+    .addEventListener('click', delButtonHandler);
+</script>
