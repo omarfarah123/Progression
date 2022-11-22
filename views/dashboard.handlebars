@@ -100,7 +100,7 @@
 const newDocumentFormHandler = async (event) => {
    
     event.preventDefault();
-  
+     alert("JS DETECTED");
     const document_title = document.querySelector('#document-title').value.trim();
     const document_link = document.querySelector('#document-link').value.trim().replace('view', 'preview');
     const url = window.location.href.toString()
@@ -152,7 +152,7 @@ document
 const newFormHandler = async (event) => {
    
     event.preventDefault();
-  
+    alert("JS DETECTED");
     const lecture_title = document.querySelector('#lecture-title').value.trim();
     const lecture_link = document.querySelector('#lecture-link').value.trim().replace('/watch?v=', '/embed/');
     const url = window.location.href.toString()
