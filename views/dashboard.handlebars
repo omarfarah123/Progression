@@ -157,7 +157,7 @@ const newFormHandler = async (event) => {
     const lecture_link = document.querySelector('#lecture-link').value.trim().replace('/watch?v=', '/embed/');
     const url = window.location.href.toString()
     let course_id = parseInt(url.slice(29))
-   
+    alert(`Values ${lecture_title} ${lecture_link} ${course_id}`)
     if (lecture_title && lecture_link && course_id) {
     alert(`Got Values ${lecture_title} ${lecture_link} ${course_id}`)
       const response = await fetch(`/api/lectures`, {
