@@ -2,6 +2,7 @@ const User = require('./User');
 const Course = require('./Course');
 const Lecture = require('./Lecture');
 const Document = require('./Document')
+const Brick = require('./Brick');
 
 User.hasMany(Course, {
   foreignKey: 'user_id',
@@ -11,6 +12,15 @@ Course.belongsTo(User, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
+
+User.hasMany(Brick, {
+  forgienKey: 'user_id',
+  onDelete: 'CASCADE'
+})
+
+Brick.belongsTo(User, {
+  forgienKey: 'user_id'
+})
 
 User.hasMany(Lecture, {
   foreignKey: 'user_id',
@@ -42,4 +52,4 @@ Document.belongsTo(Course, {
   forgienKey: 'course_id',
   onDelete: 'CASCADE'
 });
-module.exports = { User, Course, Lecture, Document };
+module.exports = { User, Course, Lecture, Document, Brick };

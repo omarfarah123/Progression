@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Course, Lecture, Document, User } = require('../models');
+const { Session } = require('express-session');
+const { Course, Lecture, Document, User, Brick } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -25,6 +26,27 @@ router.get('/courses', withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+
+  router.get('/bricks', withAuth, async (req, res) => {
+    try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Brick }],
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      res.render('bricks', {
+        ...user,
+        logged_in: true
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 router.get('/course/:id', withAuth, async (req, res) => {
   try {

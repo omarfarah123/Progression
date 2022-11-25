@@ -1,5 +1,8 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
+    <button type="button" class="btn btn-success" id="startButton">Start 20 minute session</button>
+    <button type="button" class="btn btn-danger" id="quitButton">Give Up</button>
+    <p id="timer"></p>
     <h1 class="title">{{lecture_title}}</h1>
     <iframe width="1000" height="900" src={{lecture_link}}>
     </iframe>
@@ -15,11 +18,80 @@
     display: flex;
     justify-content: center;
 }
+.btn-success{
+    display:flex;
+    justify-content: center;
+}
+#timer {
+    font-weight: 600;
+    color: navy;
+    font-size: 40px;
+}
 </style>
 
 <script>
-document.addEventListener('visibilitychange', function()
-   let status = document.visibilityState;
-   alert(status)
-});
+
+document.getElementById("quitButton").style.display = "none"
+document.getElementById("startButton").addEventListener("click", function(){
+    
+    document.getElementById("startButton").style.display = "none"
+    document.getElementById("quitButton").style.display = "block"
+     const userActive = () => {
+                if (document.visibilityState !== 'visible') {
+                    document.getElementById("startButton").style.display = "block";
+                    document.getElementById("quitButton").style.display = "none";
+                    document.getElementById("timer").innerHTML = "You left!";
+                clearInterval(downloadTimer)
+                document.removeEventListener('visibilitychange', userActive)
+            }  
+        }
+    let timeLeft = 1200
+    var downloadTimer = setInterval(function function2(){
+        let minutes = Math.floor(timeLeft / 60)
+        let remainingSeconds = timeLeft - (Math.floor(minutes) * 60);
+        if(remainingSeconds < 10){
+            document.getElementById("timer").innerHTML = `${minutes}:0${remainingSeconds}` +
+        "&nbsp"+"remaining";
+        } else {
+            document.getElementById("timer").innerHTML = `${minutes}:${remainingSeconds}` +
+        "&nbsp"+"remaining";
+        }
+        timeLeft -= 1;
+    
+            document.addEventListener('visibilitychange', userActive)
+       
+           if(timeLeft <= 0){  
+            document.getElementById("timer").innerHTML = "🧱 Earned!";
+            document.getElementById("quitButton").style.display = "none";
+            document.getElementById("startButton").style.display = "block";
+            document.removeEventListener('visibilitychange', userActive)
+         const brickAdd = async (event) => {
+            if (document.getElementById("timer").innerHTML = "🧱 Earned!") {
+            let single_brick = "🧱"
+            const response = await fetch(`/api/bricks`, {
+                method: 'POST',
+                body: JSON.stringify({single_brick}),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            });
+            if (response.ok) {
+            } else {
+                alert('Failed to add 🧱');
+          }
+            }
+        };
+        brickAdd()
+        clearInterval(downloadTimer); 
+       } 
+        }, 1000)
+   
+     document.getElementById("quitButton").addEventListener("click", function(){
+            clearInterval(downloadTimer)
+             document.getElementById("timer").innerHTML = "Better luck next time."
+             document.getElementById("startButton").style.display = "block"
+             document.getElementById("quitButton").style.display = "none"
+        })
+         
+    });
 </script>
