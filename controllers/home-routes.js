@@ -13,11 +13,11 @@ router.get('/courses', withAuth, async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
-        include: [{ model: Course }],
+        include: [{ model: Course }, {model: Brick}]
       });
   
       const user = userData.get({ plain: true });
-  
+      
       res.render('courses', {
         ...user,
         logged_in: true
@@ -30,14 +30,13 @@ router.get('/courses', withAuth, async (req, res) => {
 
   router.get('/bricks', withAuth, async (req, res) => {
     try {
-      // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
-        include: [{ model: Brick }],
+        include: [{ model: Brick }]
       });
   
       const user = userData.get({ plain: true });
-  
+      
       res.render('bricks', {
         ...user,
         logged_in: true
