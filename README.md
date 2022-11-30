@@ -1,5 +1,5 @@
 # Progression
-[![License](https://img.shields.io/badge/License-Academic%20Free%20License%20v3.0-green.svg)](https://opensource.org/licenses/AFL-3.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 #### Table of Contents
 - [Progression](#progression)
 - [Table of Contents:](#table-of-contents-)
