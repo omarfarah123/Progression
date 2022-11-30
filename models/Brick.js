@@ -16,9 +16,8 @@ Brick.init(
             allowNull: false,
         },
         created_at: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: DataTypes.NOW,
           },
         user_id: {
             type: DataTypes.INTEGER,
