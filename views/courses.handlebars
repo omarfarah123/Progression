@@ -1,3 +1,4 @@
+<a href="/bricks" class="btn btn-info" id="brickCount">{{name}} 🧱{{bricks.length}}</a>
 <div class="row d-flex justify-content-center"></div>
 <h3>Welcome {{name}} </h3>
 <div class="row mt-4">
@@ -67,7 +68,7 @@ const newFormHandler = async (event) => {
       if (response.ok) {
         document.location.reload();
       } else {
-        alert('Failed to create course');
+        alert('Failed to add course');
       }
     }
   };
