@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="row d-flex justify-content-center">
-    <button type="button" class="btn btn-success" id="startButton">Start 20 minute session</button>
-    <button type="button" class="btn btn-danger" id="quitButton">Give Up</button>
+    <div class="row d-flex justify-content-center"> 
+        <button type="button" class="btn btn-success" id="startButton">Start 20 minute session</button>
+        <button type="button" class="btn btn-danger" id="quitButton">Give Up</button>
     <p id="timer"></p>
     <h1 class="title">{{lecture_title}}</h1>
     <iframe width="1000" height="900" src={{lecture_link}}>
@@ -18,14 +18,13 @@
     display: flex;
     justify-content: center;
 }
-.btn-success{
-    display:flex;
-    justify-content: center;
-}
+
 #timer {
     font-weight: 600;
     color: navy;
     font-size: 40px;
+    display: flex;
+    justify-content: center;
 }
 </style>
 
