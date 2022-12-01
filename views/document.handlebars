@@ -78,7 +78,6 @@ document.getElementById("startButton").addEventListener("click", function(){
             if (document.getElementById("timer").innerHTML = "🧱 Earned!") {
             let single_brick = 20
             var time = new Date();
-            alert(time)
             const date = time.toString().slice(0, 16);
             const hour = time.toString().slice(16, 24);
             function tConvert (time) {
@@ -93,6 +92,7 @@ document.getElementById("startButton").addEventListener("click", function(){
                 return time.join (''); // return adjusted time or original string
             }
                 var correctHour = tConvert(hour);
+                alert(created_at)
                 var created_at = `${date}${correctHour}`;
             const response = await fetch(`/api/bricks`, {
                 method: 'POST',
