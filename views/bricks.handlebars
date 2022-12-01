@@ -138,7 +138,6 @@ body {
 </style>
 
 <script>
-
 let userBricks = document.getElementById('brickCount').innerText
 let brickCount = parseInt(userBricks.slice(7));
 /*Getting Users total study time*/
@@ -150,13 +149,14 @@ let minutes = brickCount * 20;
             var rhours = Math.floor(hours);
             var minutes = (hours - rhours) * 60;
             var rminutes = Math.round(minutes);
-            if(rhours === 1){
+            if(rhours >= 1){
                 return rhours + " hour and " + rminutes + " minutes of total study time.";
+            } else if(rhours === 0) {
+                return "0 hours and " + rminutes + " minutes of total study time.";
             } else {
-                return rhours + " hours and " + rminutes + " minutes of total study time.";
+              return "0 hours and 0 minutes of total study time.";
             }
     }
     document.getElementById("totalTime").innerText = timeConvert(minutes)
 })
-
 </script>
