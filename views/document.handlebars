@@ -48,7 +48,7 @@ document.getElementById("startButton").addEventListener("click", function(){
                 document.removeEventListener('visibilitychange', userActive)
             }  
         }
-    let timeLeft = 10
+    let timeLeft = 1200
     //Interval for timer
     var downloadTimer = setInterval(function function2(){
         let minutes = Math.floor(timeLeft / 60)
@@ -93,7 +93,6 @@ document.getElementById("startButton").addEventListener("click", function(){
             }
                 var correctHour = tConvert(hour);
                 var created_at = `${date}${correctHour}`;
-                alert(created_at)
             const response = await fetch(`/api/bricks`, {
                 method: 'POST',
                 body: JSON.stringify({single_brick, created_at}),
