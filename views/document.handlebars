@@ -92,8 +92,8 @@ document.getElementById("startButton").addEventListener("click", function(){
                 return time.join (''); // return adjusted time or original string
             }
                 var correctHour = tConvert(hour);
-                alert(created_at)
                 var created_at = `${date}${correctHour}`;
+                alert(created_at)
             const response = await fetch(`/api/bricks`, {
                 method: 'POST',
                 body: JSON.stringify({single_brick, created_at}),
