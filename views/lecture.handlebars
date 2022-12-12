@@ -1,8 +1,12 @@
+
 <div class="container">
-    <div class="row d-flex justify-content-center"> 
+    <div class="row d-flex justify-content-center">
+    <button id="backButton" class="btn btn-info" onclick="history.back()">Go Back</button>
+    <div class="studyTimer">
         <button type="button" class="btn btn-success" id="startButton">Start 20 minute session</button>
         <button type="button" class="btn btn-danger" id="quitButton">Give Up</button>
-    <p id="timer"></p>
+        <p id="timer"></p>
+    </div>
     <h1 class="title">{{lecture_title}}</h1>
     <iframe width="1000" height="900" src={{lecture_link}}>
     </iframe>
